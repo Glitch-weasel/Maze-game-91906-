@@ -49,7 +49,7 @@ class Frames():
         MM_Achivements = Button(Main_Menu, text= "Achivements", font= textholder, command=lambda: show_frame(achivements))
         MM_Achivements.place(x= 370, y= 480, anchor= "center")
 
-        MM_Options = Button(Main_Menu, text= "Options", font= textholder)
+        MM_Options = Button(Main_Menu, text= "Options", font= textholder, command=lambda: show_frame(options))
         MM_Options.place(x= 370, y= 600, anchor= "center")
 
         MM_Exit = Button(Main_Menu, text= "Exit", font= ("Arial", 25), command= root.destroy)
@@ -103,6 +103,47 @@ class Frames():
         A_BCK.place(x= 370, y= 500, anchor= "center")
 
         return Achivements
+    
+def Options_Frame():
+
+    Options_F = Frame(root,
+        bg=placeholder,
+        borderwidth=3)
+    Options_F.place(x=0, y=0, relwidth=1, relheight=1)
+
+    O_OPT_BAR_1 = Button(Options_F, text= "Audio", font= textholder)
+    O_OPT_BAR_1.place(x=10, y=0)
+
+    O_OPT_BAR_2 = Button(
+        Options_F, text= "Video", font= textholder)
+    O_OPT_BAR_2.place(x=150, y=0)
+
+    O_OPT_BAR_3 = Button(Options_F, text= "Controls", font= textholder)
+    O_OPT_BAR_3.place(x=290, y=0)
+
+    O_OPT_BAR_4 = Button(Options_F, text= "Accessibility", font= textholder)
+    O_OPT_BAR_4.place(x=475, y=0)
+
+    O_BCK = Button(Options_F, text= "Back", font= textholder, command=lambda: show_frame(main_menu))
+    O_BCK.place(x=85, y=100)
+
+    O_CRNT_TXT = Label(Options_F, text= "Audio options", font= textholder)
+    O_CRNT_TXT.place(x=370, y=300, anchor= "center")
+
+    # --- FUNCTION TO CHANGE OPTION LABEL TEXT ---
+    def change_options(text):
+        O_CRNT_TXT.config(text=text + " options")
+
+    O_OPT_BAR_1.config(command=lambda: change_options("Audio"))
+
+    O_OPT_BAR_2.config(command=lambda: change_options("Video"))
+
+    O_OPT_BAR_3.config(
+        command=lambda: change_options("Controls"))
+
+    O_OPT_BAR_4.config(command=lambda: change_options("Accessibility"))
+
+    return Options_F
 
 
 
@@ -111,6 +152,7 @@ class Frames():
 main_menu = Frames.Main_Menu_Frame()
 level_select = Frames.Level_Select_Frame()
 achivements = Frames.Achivements_Frame()
+options = Frames.Options_Frame()
 
 show_frame(main_menu)
 root.mainloop()
