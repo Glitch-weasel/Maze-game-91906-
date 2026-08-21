@@ -141,23 +141,44 @@ class Frames():
 
         O_OPT_BAR_1.config(command=lambda: Button_Multitask(audio_frame, "Audio"))
 
-        O_OPT_BAR_2.config(command=lambda: change_options("Video"))
+        O_OPT_BAR_2.config(command=lambda: Button_Multitask(video_frame, "Video"))
 
         O_OPT_BAR_3.config(
-            command=lambda: change_options("Controls"))
+            command=lambda: Button_Multitask(controls_frame, "Controls"))
 
-        O_OPT_BAR_4.config(command=lambda: change_options("Accessibility"))
+        O_OPT_BAR_4.config(command=lambda: Button_Multitask(accessability_frame, "Accessibility"))
 
         def current_options_frame():
             Audio_Frame = Frame(Options_F, bg="purple", borderwidth=3)
             Audio_Frame.place(x= 45, y= 180, width= "650", height= "550")
 
-            return Audio_Frame
-        audio_frame = current_options_frame()
-        TEST = Label(audio_frame, text= "TESTING", font= textholder)
+            Video_Frame = Frame(Options_F, bg="red", borderwidth=3)
+            Video_Frame.place(x= 45, y= 180, width= "650", height= "550")
+
+            Controls_Frame = Frame(Options_F, bg="orange", borderwidth=3)
+            Controls_Frame.place(x= 45, y= 180, width= "650", height= "550")
+
+            Accessability_Frame = Frame(Options_F, bg="green", borderwidth=3)
+            Accessability_Frame.place(x= 45, y= 180, width= "650", height= "550")
+
+
+            return Audio_Frame, Video_Frame, Controls_Frame, Accessability_Frame
+        audio_frame, video_frame, controls_frame, accessability_frame = current_options_frame()
+        TEST = Label(audio_frame, text= "AUDIO", font= textholder)
         TEST.place(x= 50, y= 100)
 
-        return Options_F
+        TEST = Label(video_frame, text= "VIDEO", font= textholder)
+        TEST.place(x= 50, y= 100)
+
+        TEST = Label(controls_frame, text= "CONTROL", font= textholder)
+        TEST.place(x= 50, y= 100)
+
+        TEST = Label(accessability_frame, text= "ACCESSABILITY", font= textholder)
+        TEST.place(x= 50, y= 100)
+        
+        audio_frame.tkraise()
+
+        return Options_F, audio_frame, video_frame, controls_frame, accessability_frame
 
 
 
@@ -166,7 +187,7 @@ class Frames():
 main_menu = Frames.Main_Menu_Frame()
 level_select = Frames.Level_Select_Frame()
 achivements = Frames.Achivements_Frame()
-options = Frames.Options_Frame()
+options, audio_frame, video_frame, controls_frame, accessability_frame = Frames.Options_Frame()
 
 show_frame(main_menu)
 root.mainloop()
